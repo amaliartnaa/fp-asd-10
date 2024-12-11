@@ -36,15 +36,23 @@ public class UserInputHandler {
             return null;
         }
 
+        // Menanyakan apakah barang ilegal
+        System.out.print("Apakah barang ilegal? (Ya/Tidak): ");
+        String illegalItem = scanner.nextLine().trim();
+        if (illegalItem.equalsIgnoreCase("Ya")) {
+            System.out.println("Paket mengandung barang ilegal. Tidak dapat diproses.");
+            return null; // Menghentikan proses pengiriman jika barang ilegal
+        }
+
         // Input berat paket
         System.out.print("Masukkan berat paket (kg): ");
         double packageWeight = scanner.nextDouble();
 
-        return new SenderReceiverData(senderName, senderAddress, senderCity, receiverName, receiverAddress, receiverCity, packageWeight);
-    }
+        // Validasi berat paket
+        if (!PackageValidator.validateWeight(packageWeight)) {
+            return null; // Jika berat tidak valid, proses dihentikan
+        }
 
-    public double collectWeight(Scanner scanner) {
-        System.out.print("Masukkan berat paket (kg): ");
-        return scanner.nextDouble();
+        return new SenderReceiverData(senderName, senderAddress, senderCity, receiverName, receiverAddress, receiverCity, packageWeight);
     }
 }

@@ -17,6 +17,10 @@ public class City {
         this.distances = distances;
     }
 
+    public void addDistance(String otherCity, int distance) {
+        distances.put(otherCity, distance);
+    }
+
     // Getter untuk semua atribut
     public String getName() {
         return name;

@@ -3,7 +3,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class FileExporter {
-    public void exportToTxt(SenderReceiverData data, String service) {
+    public void exportToTxt(SenderReceiverData data, String service, String estimatedTime) {
         String fileName = "delivery_summary.txt";
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             writer.write("=== Ringkasan Pengiriman ===\n");

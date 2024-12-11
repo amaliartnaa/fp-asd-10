@@ -3,5 +3,9 @@ Surabaya|Jawa Timur|Tegalsari|Keputran|60265|Malang:90,Yogyakarta:330,Semarang:3
 Malang|Jawa Timur|Lowokwaru|Ketawanggede|65145|Surabaya:90,Yogyakarta:350,Semarang:320
 Yogyakarta|DI Yogyakarta|Gondomanan|Ngupasan|55212|Surabaya:330,Malang:350,Semarang:120
 Semarang|Jawa Tengah|Semarang Tengah|Pandansari|50134|Surabaya:300,Malang:320,Yogyakarta:120
+Cirebon|Jawa Barat|Kejaksan|Kesenden|45111|Semarang:240,Bandung:130,Jakarta:210
+Bandung|Jawa Barat|Bandung Wetan|Cipaganti|40111|Cirebon:130,Jakarta:150
+Jakarta|DKI Jakarta|Tebet|Tebet Barat|12810|Cirebon:210,Bandung:150
+
 
 

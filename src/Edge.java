@@ -1,4 +1,4 @@
-public class Edge {
+class Edge {
     private String destinationCity;
     private int distance;
 
