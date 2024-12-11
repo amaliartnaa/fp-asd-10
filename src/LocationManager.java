@@ -1,64 +1,57 @@
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 public class LocationManager {
-    private List<City> cities;
+    // Map untuk menyimpan nama kota sebagai key dan objek City sebagai value
+    private Map<String, City> cityDatabase = new HashMap<>();
 
-    public LocationManager() {
-        cities = new ArrayList<>();
-    }
-
+    // Fungsi untuk memuat lokasi dari file
     public void loadLocations(String filePath) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                line = line.trim();
-                if (line.isEmpty() || line.startsWith("#")) {
-                    continue; // Abaikan baris kosong atau komentar
+        try (Scanner scanner = new Scanner(new File(filePath))) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                if (line.startsWith("#")) continue;  // Mengabaikan baris komentar
+
+                String[] parts = line.split("\\|");  // Memisahkan berdasarkan tanda '|'
+                if (parts.length >= 6) {
+                    String name = parts[0].trim();
+                    String province = parts[1].trim();
+                    String district = parts[2].trim();
+                    String subDistrict = parts[3].trim();
+                    String postalCode = parts[4].trim();
+
+                    // Memproses jarak ke kota lain
+                    Map<String, Integer> distances = new HashMap<>();
+                    String[] distanceData = parts[5].split(",");
+                    for (String distance : distanceData) {
+                        String[] cityDistance = distance.split(":");
+                        if (cityDistance.length == 2) {
+                            String cityName = cityDistance[0].trim();
+                            int cityDistanceValue = Integer.parseInt(cityDistance[1].trim());
+                            distances.put(cityName, cityDistanceValue);
+                        }
+                    }
+
+                    // Menambahkan data kota ke database
+                    City city = new City(name, province, district, subDistrict, postalCode, distances);
+                    cityDatabase.put(name, city);
                 }
-
-                // Memecah baris menjadi bagian-bagian berdasarkan "|"
-                String[] parts = line.split("\\|");
-                if (parts.length < 6) {
-                    System.out.println("Format tidak valid: " + line);
-                    continue;
-                }
-
-                String name = parts[0];
-                String province = parts[1];
-                String district = parts[2];
-                String subDistrict = parts[3];
-                String postalCode = parts[4];
-                Map<String, Integer> distances = parseDistances(parts[5]);
-
-                City city = new City(name, province, district, subDistrict, postalCode, distances);
-                cities.add(city);
             }
-        } catch (IOException e) {
-            System.err.println("Gagal membaca file lokasi: " + e.getMessage());
+        } catch (FileNotFoundException e) {
+            System.out.println("File tidak ditemukan: " + e.getMessage());
         }
     }
 
-    private Map<String, Integer> parseDistances(String distanceString) {
-        Map<String, Integer> distances = new HashMap<>();
-        String[] pairs = distanceString.split(",");
-        for (String pair : pairs) {
-            String[] keyValue = pair.split(":");
-            if (keyValue.length == 2) {
-                String city = keyValue[0].trim();
-                int distance = Integer.parseInt(keyValue[1].trim());
-                distances.put(city, distance);
-            }
-        }
-        return distances;
+    // Fungsi untuk memeriksa apakah kota ada di database
+    public boolean isCityAvailable(String city) {
+        return cityDatabase.containsKey(city);
     }
 
-    public City findCityByName(String name) {
-        for (City city : cities) {
-            if (city.getCity().equalsIgnoreCase(name)) { // Gunakan equalsIgnoreCase
-                return city;
-            }
-        }
-        return null; // Kota tidak ditemukan
+    // Fungsi untuk mendapatkan objek City berdasarkan nama kota
+    public City getCity(String cityName) {
+        return cityDatabase.get(cityName);
     }
 }

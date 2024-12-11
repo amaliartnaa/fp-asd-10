@@ -14,7 +14,7 @@ public class UserInputHandler {
         String senderCityName = scanner.nextLine();
 
         // Cari kota pengirim
-        City senderCity = locationManager.findCityByName(senderCityName);
+        City senderCity = locationManager.getCity(senderCityName);  // Menggunakan getCity
         if (senderCity == null) {
             System.out.println("Kota pengirim tidak ditemukan dalam database.");
             return null;
@@ -30,7 +30,7 @@ public class UserInputHandler {
         String receiverCityName = scanner.nextLine();
 
         // Cari kota penerima
-        City receiverCity = locationManager.findCityByName(receiverCityName);
+        City receiverCity = locationManager.getCity(receiverCityName);  // Menggunakan getCity
         if (receiverCity == null) {
             System.out.println("Kota penerima tidak ditemukan dalam database.");
             return null;
@@ -43,8 +43,7 @@ public class UserInputHandler {
         return new SenderReceiverData(senderName, senderAddress, senderCity, receiverName, receiverAddress, receiverCity, packageWeight);
     }
 
-    public double collectWeight() {
-        Scanner scanner = new Scanner(System.in);
+    public double collectWeight(Scanner scanner) {
         System.out.print("Masukkan berat paket (kg): ");
         return scanner.nextDouble();
     }

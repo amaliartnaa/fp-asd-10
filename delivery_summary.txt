@@ -1,0 +1,11 @@
+=== Ringkasan Pengiriman ===
+Pengirim: amel
+Alamat Pengirim: Blok T no 14
+Kota Pengirim: Surabaya
+
+Penerima: Ratna
+Alamat Penerima: Jalan Bunga Anyelir
+Kota Penerima: Malang
+
+Layanan yang Dipilih: Kargo
+=====================================

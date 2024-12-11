@@ -18,9 +18,9 @@ public class LocationBST {
         if (current == null) {
             return new Node(city);
         }
-        if (city.getCity().compareTo(current.city.getCity()) < 0) {
+        if (city.getName().compareTo(current.city.getName()) < 0) {  // Ganti getCity() dengan getName()
             current.left = addCityRecursive(current.left, city);
-        } else if (city.getCity().compareTo(current.city.getCity()) > 0) {
+        } else if (city.getName().compareTo(current.city.getName()) > 0) {
             current.right = addCityRecursive(current.right, city);
         }
         return current;
@@ -34,10 +34,10 @@ public class LocationBST {
         if (current == null) {
             return null;
         }
-        if (cityName.equals(current.city.getCity())) {
+        if (cityName.equals(current.city.getName())) {  // Ganti getCity() dengan getName()
             return current.city;
         }
-        return cityName.compareTo(current.city.getCity()) < 0
+        return cityName.compareTo(current.city.getName()) < 0
                 ? findCityRecursive(current.left, cityName)
                 : findCityRecursive(current.right, cityName);
     }
