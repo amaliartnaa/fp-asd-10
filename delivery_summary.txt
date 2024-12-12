@@ -1,11 +1,11 @@
 === Ringkasan Pengiriman ===
-Asal: Cirebon
-Tujuan: Jakarta
-Alamat: Kos
-Jarak: 210.0 KM
-Barang mudah pecah? : Ya
+Asal: Malang
+Tujuan: Cirebon
+Alamat: Rumah
+Jarak: 560.0 KM
+Barang mudah pecah? : Tidak
 Apakah terdapat cairan? : Tidak
 Apakah terdapat baterai? : Ya
-Layanan: Express
-Estimasi Waktu: 1 Hari
+Layanan: Reguler
+Estimasi Waktu: 5 Hari
 =====================================
