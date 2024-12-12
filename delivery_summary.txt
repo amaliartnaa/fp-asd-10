@@ -1,11 +1,11 @@
 === Ringkasan Pengiriman ===
-Pengirim: amel
-Alamat Pengirim: itb
-Kota Pengirim: Bandung
-
-Penerima: ratna
-Alamat Penerima: perumdos
-Kota Penerima: Surabaya
-
-Layanan yang Dipilih: Reguler
+Asal: Surabaya
+Tujuan: Bandung
+Alamat: Braga
+Jarak: 261.0 KM
+Barang mudah pecah? : Tidak
+Apakah terdapat cairan? : Ya
+Apakah terdapat baterai? : Ya
+Layanan: Kargo
+Estimasi Waktu: 2 Hari
 =====================================

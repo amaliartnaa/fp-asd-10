@@ -46,6 +46,16 @@ public class Main {
             // Pilihan layanan berdasarkan kondisi cairan
             String selectedService = chooseDeliveryService(isLiquid, scanner);
 
+            // Menanyakan apakah barang mudah pecah
+            System.out.print("Barang mudah pecah? (Ya/Tidak): ");
+            String isFragileInput = scanner.next();
+            boolean isFragile = isFragileInput.equalsIgnoreCase("Ya");
+
+            // Menanyakan apakah barang mengandung baterai
+            System.out.print("Apakah paket mengandung baterai? (Ya/Tidak): ");
+            String containsBatteryInput = scanner.next();
+            boolean containsBattery = containsBatteryInput.equalsIgnoreCase("Ya");
+
             // Menghitung jarak antar kota dengan algoritma Dijkstra
             Map<String, Integer> distances = graph.dijkstra(data.getSenderCity().getName());
             double distance = distances.getOrDefault(data.getReceiverCity().getName(), -1);
@@ -64,12 +74,15 @@ public class Main {
             System.out.println("Tujuan: " + data.getReceiverCity());
             System.out.println("Alamat: " + data.getReceiverAddress());
             System.out.println("Jarak: " + distance + " KM");
+            System.out.println("Barang mudah pecah? : " + (isFragile ? "Ya" : "Tidak"));
+            System.out.println("Apakah terdapat cairan? : " + (isLiquid ? "Ya" : "Tidak"));
+            System.out.println("Apakah terdapat baterai? : " + (containsBattery ? "Ya" : "Tidak"));
             System.out.println("Layanan: " + selectedService);
             System.out.println("Estimasi Waktu: " + estimatedTime);
 
             // Menyimpan data ke file jika perlu
             FileExporter exporter = new FileExporter();
-            exporter.exportToTxt(data, selectedService, estimatedTime);
+            exporter.exportToTxt(data, selectedService, estimatedTime, isFragile, isLiquid, containsBattery, distance);
 
         } catch (Exception e) {
             System.out.println("Terjadi kesalahan saat menginput data: " + e.getMessage());
