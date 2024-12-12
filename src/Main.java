@@ -131,19 +131,40 @@ public class Main {
 
     public static void handleLocationBST() {
         // Membuat pohon lokasi untuk Pulau Jawa
-        LocationBST tree = new LocationBST("Pulau Jawa");
+        LocationBST tree = new LocationBST();
 
-        // Tambahkan lokasi secara efisien
+        // Menambahkan lokasi-lokasi
         tree.addLocation("Jawa Barat", "Bandung", "Cibeunying|40121");
         tree.addLocation("Jawa Barat", "Bandung", "Antapani|40291");
         tree.addLocation("Jawa Barat", "Bogor", "Cibinong|16911");
         tree.addLocation("Jawa Timur", "Surabaya", "Gubeng|60281");
         tree.addLocation("Jawa Timur", "Surabaya", "Kenjeran|60113");
         tree.addLocation("Jawa Timur", "Malang", "Klojen|65111");
+        tree.addLocation("Jawa Timur", "Banyuwangi", "Karangrejo|68411");
+        tree.addLocation("Jawa Tengah", "Surakarta", "Kauman|57112");
+        tree.addLocation("Jawa Tengah", "Semarang", "Mlatibaru|50122");
+        tree.addLocation("Jawa Timur", "Madiun", "Kecamatan Madiun|60150");
 
-        // Cetak pohon lokasi
-        System.out.println("Struktur Lokasi Pulau Jawa:");
-        tree.printTree();
+        // Scanner untuk opsi pengguna
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Pilih Opsi:");
+        System.out.println("1. Tampilkan semua lokasi");
+        System.out.println("2. Cari lokasi tertentu");
+        int subChoice = scanner.nextInt();
+        scanner.nextLine(); // Konsumsi newline character
+
+        if (subChoice == 1) {
+            // Tampilkan semua lokasi
+            System.out.println("Struktur Lokasi Pulau Jawa:");
+            tree.tampilkan();
+        } else if (subChoice == 2) {
+            // Cari lokasi tertentu
+            System.out.print("Masukkan nama lokasi yang ingin dicari: ");
+            String lokasi = scanner.nextLine();  // Menggunakan nextLine() untuk nama lokasi
+            System.out.println("Hasil pencarian untuk \"" + lokasi + "\":");
+            tree.searchByInorder(lokasi);  // Pastikan pencarian dilakukan berdasarkan nama lokasi
+        } else {
+            System.out.println("Pilihan tidak valid.");
+        }
     }
-
 }
