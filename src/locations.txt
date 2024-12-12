@@ -1,8 +1,8 @@
 # Format: Kota|Provinsi|Kecamatan|Kelurahan|KodePos|JarakKeKotaLain
-Surabaya|Jawa Timur|Tegalsari|Keputran|60265|Malang:90,Yogyakarta:330,Semarang:300
-Malang|Jawa Timur|Lowokwaru|Ketawanggede|65145|Surabaya:90,Yogyakarta:350,Semarang:320
-Yogyakarta|DI Yogyakarta|Gondomanan|Ngupasan|55212|Surabaya:330,Malang:350,Semarang:120
-Semarang|Jawa Tengah|Semarang Tengah|Pandansari|50134|Surabaya:300,Malang:320,Yogyakarta:120
-Cirebon|Jawa Barat|Kejaksan|Kesenden|45111|Semarang:240,Bandung:130,Jakarta:210
-Bandung|Jawa Barat|Bandung Wetan|Cipaganti|40111|Cirebon:130,Jakarta:150
-Jakarta|DKI Jakarta|Tebet|Tebet Barat|12810|Cirebon:210,Bandung:150
+Surabaya|Jawa Timur|Tegalsari|Keputran|60265|Malang:90,Yogyakarta:330,Semarang:300,Cirebon:572,Bandung:701,Jakarta:782
+Malang|Jawa Timur|Lowokwaru|Ketawanggede|65145|Surabaya:90,Yogyakarta:350,Semarang:320,Cirebon:640,Bandung:749,Jakarta:850
+Yogyakarta|DI Yogyakarta|Gondomanan|Ngupasan|55212|Surabaya:330,Malang:350,Semarang:120,Cirebon:366,Bandung:495,Jakarta:576
+Semarang|Jawa Tengah|Semarang Tengah|Pandansari|50134|Surabaya:300,Malang:320,Yogyakarta:120,Cirebon:228,Bandung:357,Jakarta:438
+Cirebon|Jawa Barat|Kejaksan|Kesenden|45111|Semarang:240,Bandung:130,Jakarta:210,Surabaya:572,Malang:640,Yogyakarta:366
+Bandung|Jawa Barat|Bandung Wetan|Cipaganti|40111|Cirebon:130,Jakarta:150,Surabaya:701,Malang:749,Yogyakarta:495,Semarang:357
+Jakarta|DKI Jakarta|Tebet|Tebet Barat|12810|Cirebon:210,Bandung:150,Surabaya:782,Malang:850,Yogyakarta:576,Semarang:438

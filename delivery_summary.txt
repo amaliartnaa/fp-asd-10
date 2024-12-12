@@ -1,9 +1,9 @@
 === Ringkasan Pengiriman ===
-Asal: Jakarta
-Tujuan: Cirebon
+Asal: Cirebon
+Tujuan: Jakarta
 Alamat: Kos
 Jarak: 210.0 KM
-Barang mudah pecah? : Tidak
+Barang mudah pecah? : Ya
 Apakah terdapat cairan? : Tidak
 Apakah terdapat baterai? : Ya
 Layanan: Express
