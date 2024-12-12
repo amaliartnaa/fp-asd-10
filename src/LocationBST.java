@@ -1,44 +1,54 @@
-public class LocationBST {
-    private class Node {
-        City city;
-        Node left, right;
+class LocationBST {
+    private LocationNode root;
 
-        Node(City city) {
-            this.city = city;
+    public LocationBST(String rootName) {
+        this.root = new LocationNode(rootName);
+    }
+
+    public LocationNode getRoot() {
+        return root;
+    }
+
+    // Tambahkan lokasi secara hierarki
+    public void addLocation(String... locationHierarchy) {
+        LocationNode current = root;
+        for (int i = 0; i < locationHierarchy.length; i++) {
+            String currentLocation = locationHierarchy[i]; // Tanpa 'final'
+            String postalCode = null;
+
+            // Jika currentLocation mengandung kode pos, pisahkan
+            if (i == locationHierarchy.length - 1 && currentLocation.contains("|")) {
+                String[] parts = currentLocation.split("\\|");
+                currentLocation = parts[0];  // Mengubah nilai currentLocation
+                postalCode = parts[1];       // Menyimpan kode pos
+            }
+
+            // Simpan currentLocation di variabel lokal untuk digunakan di dalam lambda
+            String finalCurrentLocation = currentLocation;  // Variabel lokal untuk lambda
+            LocationNode child = current.getChildren().stream()
+                    .filter(node -> node.getName().equals(finalCurrentLocation)) // Menggunakan variabel lokal
+                    .findFirst()
+                    .orElse(null);
+
+            if (child == null) {
+                child = postalCode == null
+                        ? new LocationNode(finalCurrentLocation)
+                        : new LocationNode(finalCurrentLocation, postalCode);
+                current.addChild(child);
+            }
+
+            current = child;  // Mengubah current setelah keluar dari stream
         }
     }
 
-    private Node root;
-
-    public void addCity(City city) {
-        root = addCityRecursive(root, city);
+    public void printTree() {
+        printNode(root, 0);
     }
 
-    private Node addCityRecursive(Node current, City city) {
-        if (current == null) {
-            return new Node(city);
+    private void printNode(LocationNode node, int depth) {
+        System.out.println("  ".repeat(depth) + node);
+        for (LocationNode child : node.getChildren()) {
+            printNode(child, depth + 1);
         }
-        if (city.getName().compareTo(current.city.getName()) < 0) {  // Ganti getCity() dengan getName()
-            current.left = addCityRecursive(current.left, city);
-        } else if (city.getName().compareTo(current.city.getName()) > 0) {
-            current.right = addCityRecursive(current.right, city);
-        }
-        return current;
-    }
-
-    public City findCity(String cityName) {
-        return findCityRecursive(root, cityName);
-    }
-
-    private City findCityRecursive(Node current, String cityName) {
-        if (current == null) {
-            return null;
-        }
-        if (cityName.equals(current.city.getName())) {  // Ganti getCity() dengan getName()
-            return current.city;
-        }
-        return cityName.compareTo(current.city.getName()) < 0
-                ? findCityRecursive(current.left, cityName)
-                : findCityRecursive(current.right, cityName);
     }
 }

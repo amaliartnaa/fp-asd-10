@@ -2,6 +2,23 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+        // Pilihan program
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Pilih Mode:");
+        System.out.println("1. Proses Pengiriman Paket");
+        System.out.println("2. Mau lihat lokasi");
+        int choice = scanner.nextInt();
+
+        if (choice == 1) {
+            handlePackageDelivery();  // Menangani paket pengiriman
+        } else if (choice == 2) {
+            handleLocationBST();  // Menangani BST lokasi
+        } else {
+            System.out.println("Pilihan tidak valid.");
+        }
+    }
+
+    public static void handlePackageDelivery() {
         // Membaca data lokasi (Asal dan Tujuan)
         LocationManager locationManager = new LocationManager();
         locationManager.loadLocations("src/locations.txt");
@@ -111,4 +128,22 @@ public class Main {
 
         return estimatedDays + " Hari";
     }
+
+    public static void handleLocationBST() {
+        // Membuat pohon lokasi untuk Pulau Jawa
+        LocationBST tree = new LocationBST("Pulau Jawa");
+
+        // Tambahkan lokasi secara efisien
+        tree.addLocation("Jawa Barat", "Bandung", "Cibeunying|40121");
+        tree.addLocation("Jawa Barat", "Bandung", "Antapani|40291");
+        tree.addLocation("Jawa Barat", "Bogor", "Cibinong|16911");
+        tree.addLocation("Jawa Timur", "Surabaya", "Gubeng|60281");
+        tree.addLocation("Jawa Timur", "Surabaya", "Kenjeran|60113");
+        tree.addLocation("Jawa Timur", "Malang", "Klojen|65111");
+
+        // Cetak pohon lokasi
+        System.out.println("Struktur Lokasi Pulau Jawa:");
+        tree.printTree();
+    }
+
 }
