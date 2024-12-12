@@ -1,12 +1,8 @@
 # Format: Kota|Provinsi|Kecamatan|Kelurahan|KodePos|JarakKeKotaLain
-Surabaya|Jawa Timur|Tegalsari|Keputran|60265|Malang:90,Yogyakarta:330,Semarang:300,Bandung:568,Jakarta:760,Bekasi:780
-Malang|Jawa Timur|Lowokwaru|Ketawanggede|65145|Surabaya:90,Yogyakarta:350,Semarang:320,Bandung:430,Jakarta:690,Bekasi:71
-Yogyakarta|DI Yogyakarta|Gondomanan|Ngupasan|55212|Surabaya:330,Malang:350,Semarang:120,Bandung:460,Jakarta:430,Bekasi:450
-Semarang|Jawa Tengah|Semarang Tengah|Pandansari|50134|Surabaya:300,Malang:320,Yogyakarta:120,Bandung:390,Jakarta:340,Bekasi:360
-Cirebon|Jawa Barat|Kejaksan|Kesenden|45111|Semarang:240,Bandung:130,Jakarta:210,Surabaya:420,Bekasi:230
-Bandung|Jawa Barat|Bandung Wetan|Cipaganti|40111|Cirebon:130,Jakarta:150,Semarang:390,Yogyakarta:460,Bekasi:100
-Jakarta|DKI Jakarta|Tebet|Tebet Barat|12810|Cirebon:210,Bandung:150,Semarang:340,Yogyakarta:430,Bekasi:20
-Bekasi|Jawa Barat|Bekasi Timur|Margajaya|17113|Jakarta:20,Bandung:100,Cirebon:230,Semarang:360,Yogyakarta:450
-Makassar|Sulawesi Selatan|Makassar|Wajo|90112|Jakarta:1340,Bandung:1360,Cirebon:1380,Semarang:1360,Yogyakarta:1340
-Medan|Sumatera Utara|Medan Petisah|Pasar Baru|20212|Jakarta:1240,Bandung:1260,Cirebon:1280,Semarang:1260,Yogyakarta:1240
-Palembang|Sumatera Selatan|Palembang|Ilir Barat I|30112|Jakarta:1140,Bandung:1160,Cirebon:1180,Semarang:1160,Yogyakarta:1140
+Surabaya|Jawa Timur|Tegalsari|Keputran|60265|Malang:90,Yogyakarta:330,Semarang:300
+Malang|Jawa Timur|Lowokwaru|Ketawanggede|65145|Surabaya:90,Yogyakarta:350,Semarang:320
+Yogyakarta|DI Yogyakarta|Gondomanan|Ngupasan|55212|Surabaya:330,Malang:350,Semarang:120
+Semarang|Jawa Tengah|Semarang Tengah|Pandansari|50134|Surabaya:300,Malang:320,Yogyakarta:120
+Cirebon|Jawa Barat|Kejaksan|Kesenden|45111|Semarang:240,Bandung:130,Jakarta:210
+Bandung|Jawa Barat|Bandung Wetan|Cipaganti|40111|Cirebon:130,Jakarta:150
+Jakarta|DKI Jakarta|Tebet|Tebet Barat|12810|Cirebon:210,Bandung:150

@@ -1,11 +1,11 @@
 === Ringkasan Pengiriman ===
-Asal: Surabaya
-Tujuan: Bandung
-Alamat: Braga
-Jarak: 261.0 KM
+Asal: Jakarta
+Tujuan: Cirebon
+Alamat: Kos
+Jarak: 210.0 KM
 Barang mudah pecah? : Tidak
-Apakah terdapat cairan? : Ya
+Apakah terdapat cairan? : Tidak
 Apakah terdapat baterai? : Ya
-Layanan: Kargo
-Estimasi Waktu: 2 Hari
+Layanan: Express
+Estimasi Waktu: 1 Hari
 =====================================
