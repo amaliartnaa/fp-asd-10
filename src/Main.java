@@ -4,9 +4,16 @@ public class Main {
     public static void main(String[] args) {
         // Pilihan program
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Pilih Mode:");
+
+        System.out.println("===========================================");
+        System.out.println("   Halo! Selamat Datang di Layanan Kami!   ");
+        System.out.println("===========================================");
+        System.out.println("Ada yang bisa kami bantu? 😊");
+        System.out.println("Silakan pilih salah satu mode di bawah ini:");
+        System.out.println("-------------------------------------------");
         System.out.println("1. Proses Pengiriman Paket");
         System.out.println("2. Mau lihat lokasi");
+
         int choice = scanner.nextInt();
 
         if (choice == 1) {

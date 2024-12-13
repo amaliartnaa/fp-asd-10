@@ -18,21 +18,21 @@ public class SenderReceiverData {
         this.packageWeight = packageWeight;
     }
 
-    public String getSenderName() {
-        return senderName;
-    }
+//    public String getSenderName() {
+//        return senderName;
+//    }
 
-    public String getSenderAddress() {
-        return senderAddress;
-    }
+//    public String getSenderAddress() {
+//        return senderAddress;
+//    }
 
     public City getSenderCity() {
         return senderCity;
     }
 
-    public String getReceiverName() {
-        return receiverName;
-    }
+//    public String getReceiverName() {
+//        return receiverName;
+//    }
 
     public String getReceiverAddress() {
         return receiverAddress;
@@ -42,7 +42,7 @@ public class SenderReceiverData {
         return receiverCity;
     }
 
-    public double getPackageWeight() {
-        return packageWeight;
-    }
+//    public double getPackageWeight() {
+//        return packageWeight;
+//    }
 }

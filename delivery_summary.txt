@@ -1,11 +1,11 @@
 === Ringkasan Pengiriman ===
-Asal: Jakarta
-Tujuan: Cirebon
-Alamat: Kos
-Jarak: 210.0 KM
+Asal: Bandung
+Tujuan: Surabaya
+Alamat: perumdos
+Jarak: 670.0 KM
 Barang mudah pecah? : Tidak
 Apakah terdapat cairan? : Tidak
-Apakah terdapat baterai? : Ya
+Apakah terdapat baterai? : Tidak
 Layanan: Express
-Estimasi Waktu: 1 Hari
+Estimasi Waktu: 2 Hari
 =====================================
