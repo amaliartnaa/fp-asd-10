@@ -1,11 +1,11 @@
 === Ringkasan Pengiriman ===
-Asal: Jakarta
-Tujuan: Cirebon
-Alamat: Kos
-Jarak: 210.0 KM
-Barang mudah pecah? : Tidak
-Apakah terdapat cairan? : Tidak
+Asal: Surabaya
+Tujuan: Malang
+Alamat: ub
+Jarak: 90.0 KM
+Barang mudah pecah? : Ya
+Apakah terdapat cairan? : Ya
 Apakah terdapat baterai? : Ya
-Layanan: Express
-Estimasi Waktu: 1 Hari
+Layanan: kargo
+Estimasi Waktu: 2 Hari
 =====================================

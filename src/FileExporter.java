@@ -3,8 +3,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class FileExporter {
-    public void exportToTxt(SenderReceiverData data, String service, String estimatedTime, 
-                            boolean isFragile, boolean isLiquid, boolean containsBattery, 
+    public void exportToTxt(SenderReceiverData data, String service, String estimatedTime,
+                            boolean isFragile, boolean isLiquid, boolean containsBattery,
                             double distance) {
         String fileName = "delivery_summary.txt";
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {

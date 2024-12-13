@@ -2,7 +2,6 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        // Pilihan program
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("===========================================");
@@ -17,20 +16,18 @@ public class Main {
         int choice = scanner.nextInt();
 
         if (choice == 1) {
-            handlePackageDelivery();  // Menangani paket pengiriman
+            handlePackageDelivery();
         } else if (choice == 2) {
-            handleLocationBST();  // Menangani BST lokasi
+            handleLocationBST();
         } else {
             System.out.println("Pilihan tidak valid.");
         }
     }
 
     public static void handlePackageDelivery() {
-        // Membaca data lokasi (Asal dan Tujuan)
         LocationManager locationManager = new LocationManager();
         locationManager.loadLocations("src/locations.txt");
 
-        // Mengumpulkan data pengirim dan penerima
         UserInputHandler userInputHandler = new UserInputHandler();
         SenderReceiverData data = userInputHandler.collectSenderReceiverData(locationManager);
 
@@ -39,31 +36,29 @@ public class Main {
             return;
         }
 
-        // Membuat objek Graph dan memuat data lokasi
         Graph graph = new Graph();
         graph.loadLocationsFromFile("src/locations.txt");
 
-        // Memasukkan informasi tambahan terkait paket
         try (Scanner scanner = new Scanner(System.in)) {
-            // Validasi apakah ada cairan
             System.out.print("Apakah paket mengandung cairan? (Ya/Tidak): ");
             String isLiquidInput = scanner.next();
             boolean isLiquid = isLiquidInput.equalsIgnoreCase("Ya");
 
-            // Pilihan layanan berdasarkan kondisi cairan
-            String selectedService = chooseDeliveryService(isLiquid, scanner);
-
-            // Menanyakan apakah barang mudah pecah
             System.out.print("Barang mudah pecah? (Ya/Tidak): ");
             String isFragileInput = scanner.next();
             boolean isFragile = isFragileInput.equalsIgnoreCase("Ya");
 
-            // Menanyakan apakah barang mengandung baterai
             System.out.print("Apakah paket mengandung baterai? (Ya/Tidak): ");
             String containsBatteryInput = scanner.next();
             boolean containsBattery = containsBatteryInput.equalsIgnoreCase("Ya");
 
-            // Menghitung jarak antar kota dengan algoritma Dijkstra
+            String selectedService = chooseDeliveryService(isLiquid, isFragile, containsBattery, scanner);
+            if (selectedService == null) {
+                System.out.println("Layanan pengiriman tidak tersedia. Pengiriman dibatalkan.");
+                return;
+            }
+
+
             Map<String, Integer> distances = graph.dijkstra(data.getSenderCity().getName());
             double distance = distances.getOrDefault(data.getReceiverCity().getName(), -1);
 
@@ -72,10 +67,8 @@ public class Main {
                 return;
             }
 
-            // Estimasi waktu pengiriman berdasarkan jarak dan layanan
             String estimatedTime = estimateDeliveryTime(distance, selectedService);
 
-            // Menyimpan ringkasan pengiriman
             System.out.println("\n=== Ringkasan Pengiriman ===");
             System.out.println("Asal: " + data.getSenderCity());
             System.out.println("Tujuan: " + data.getReceiverCity());
@@ -87,7 +80,6 @@ public class Main {
             System.out.println("Layanan: " + selectedService);
             System.out.println("Estimasi Waktu: " + estimatedTime);
 
-            // Menyimpan data ke file jika perlu
             FileExporter exporter = new FileExporter();
             exporter.exportToTxt(data, selectedService, estimatedTime, isFragile, isLiquid, containsBattery, distance);
 
@@ -96,54 +88,41 @@ public class Main {
         }
     }
 
-    // Memilih layanan berdasarkan apakah barang mengandung cairan atau tidak
-    public static String chooseDeliveryService(boolean isLiquid, Scanner scanner) {
-        String selectedService = null;
-        if (isLiquid) {
-            System.out.println("Karena paket mengandung cairan, Anda tidak bisa memilih layanan Express.");
-            System.out.println("Pilih layanan pengiriman (Kargo/Reguler): ");
-            selectedService = scanner.next();
-            while (!selectedService.equalsIgnoreCase("Kargo") && !selectedService.equalsIgnoreCase("Reguler")) {
-                System.out.println("Pilihan tidak valid. Silakan pilih Kargo atau Reguler.");
-                selectedService = scanner.next();
-            }
-        } else {
-            System.out.println("Pilih layanan pengiriman (Kargo/Reguler/Express): ");
-            selectedService = scanner.next();
-            while (!selectedService.equalsIgnoreCase("Kargo") && !selectedService.equalsIgnoreCase("Reguler") && !selectedService.equalsIgnoreCase("Express")) {
-                System.out.println("Pilihan tidak valid. Silakan pilih Kargo, Reguler, atau Express.");
-                selectedService = scanner.next();
-            }
+    public static String chooseDeliveryService(boolean isLiquid, boolean isFragile, boolean containsBattery, Scanner scanner) {
+        List<String> availableServices = new ArrayList<>(List.of("Kargo", "Reguler", "Express"));
+
+        // Validasi dengan PackageValidator
+        if (!PackageValidator.validatePackage(isLiquid, containsBattery, false, isFragile, availableServices)) {
+            return null;  // Menghentikan proses jika paket tidak valid
         }
+
+        System.out.println("Pilih layanan pengiriman " + availableServices + ": ");
+        String selectedService = scanner.next();
+
+        while (!availableServices.contains(selectedService)) {
+            System.out.println("Pilihan tidak valid. Silakan pilih " + availableServices + ".");
+            selectedService = scanner.next();
+        }
+
         return selectedService;
     }
 
-    // Menentukan estimasi waktu berdasarkan jarak dan layanan
     public static String estimateDeliveryTime(double distance, String service) {
         int estimatedDays = 0;
 
-        if (service.equals("Kargo")) {
-            if (distance < 500) {
-                estimatedDays = 2;
-            } else if (distance < 1000) {
+        switch (service) {
+            case "Kargo":
+                estimatedDays = distance < 500 ? 2 : distance < 1000 ? 3 : 5;
+                break;
+            case "Reguler":
+                estimatedDays = distance < 500 ? 3 : distance < 1000 ? 5 : 7;
+                break;
+            case "Express":
+                estimatedDays = distance < 500 ? 1 : 2;
+                break;
+            default:
+                System.out.println("Layanan tidak dikenal. Menggunakan estimasi default.");
                 estimatedDays = 3;
-            } else {
-                estimatedDays = 5;
-            }
-        } else if (service.equals("Reguler")) {
-            if (distance < 500) {
-                estimatedDays = 3;
-            } else if (distance < 1000) {
-                estimatedDays = 5;
-            } else {
-                estimatedDays = 7;
-            }
-        } else if (service.equals("Express")) {
-            if (distance < 500) {
-                estimatedDays = 1;
-            } else {
-                estimatedDays = 2;
-            }
         }
 
         return estimatedDays + " Hari";

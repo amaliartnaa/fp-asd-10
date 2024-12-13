@@ -1,17 +1,25 @@
+import java.util.List;
+
 public class PackageValidator {
     // Validasi properti paket (cairan, baterai, barang ilegal)
-    public static boolean validatePackage(boolean isLiquid, boolean isBattery, boolean isIllegal) {
+    public static boolean validatePackage(boolean isLiquid, boolean containsBattery, boolean isIllegal, boolean isFragile, List<String> availableServices) {
         if (isIllegal) {
             System.out.println("Paket mengandung barang ilegal. Tidak dapat diproses.");
-            return false;
+            return false;  // Kembali false jika ilegal
         }
-        if (isBattery) {
-            System.out.println("Paket mengandung baterai. Harus melalui jalur darat.");
+        if (containsBattery || isLiquid) {
+            availableServices.remove("Express");
+            if (containsBattery) {
+                System.out.println("Karena paket mengandung baterai, Anda tidak bisa memilih layanan Express.");
+            }
+            if (isLiquid) {
+                System.out.println("Karena paket mengandung cairan, Anda tidak bisa memilih layanan Express.");
+            }
         }
-        if (isLiquid) {
-            System.out.println("Paket mengandung cairan. Opsi layanan Express tidak tersedia.");
+        if (isFragile) {
+            System.out.println("Paket rentan pecah.");
         }
-        return true;
+        return true;  // Jika semuanya valid
     }
 
     // Validasi berat paket
