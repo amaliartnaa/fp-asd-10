@@ -45,6 +45,10 @@ public class Graph {
                             String neighborCity = distInfo[0].trim();
                             int distanceValue = Integer.parseInt(distInfo[1].trim());
                             neighbors.put(neighborCity, distanceValue);
+
+                            // Tambahkan hubungan dua arah
+                            adjacencyList.putIfAbsent(neighborCity, new HashMap<>());
+                            adjacencyList.get(neighborCity).put(city, distanceValue);
                         } catch (NumberFormatException e) {
                             System.out.println("Format jarak tidak valid: " + distance);
                         }
@@ -53,9 +57,7 @@ public class Graph {
 
                 // Menambahkan kota dan tetangganya ke adjacency list
                 adjacencyList.putIfAbsent(city, new HashMap<>());
-                for (Map.Entry<String, Integer> entry : neighbors.entrySet()) {
-                    adjacencyList.get(city).put(entry.getKey(), entry.getValue());
-                }
+                adjacencyList.get(city).putAll(neighbors);
             }
         } catch (IOException e) {
             System.out.println("Terjadi kesalahan saat membaca file: " + e.getMessage());
@@ -64,6 +66,11 @@ public class Graph {
 
     // Implementasi algoritma Dijkstra untuk mencari jarak terpendek
     public Map<String, Integer> dijkstra(String start) {
+        if (!adjacencyList.containsKey(start)) {
+            System.out.println("Kota asal tidak ditemukan: " + start);
+            return Collections.emptyMap();
+        }
+
         Map<String, Integer> distances = new HashMap<>();
         PriorityQueue<String> pq = new PriorityQueue<>(Comparator.comparingInt(distances::get));
 
